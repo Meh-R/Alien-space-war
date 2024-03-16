@@ -1,0 +1,17 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(37, 37, 37);
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  border: 3px solid grey;
+  width: 1500px;
+  height: 1000px;
+}
