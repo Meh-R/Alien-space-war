@@ -6,12 +6,17 @@
 
 body {
   background-color: rgb(37, 37, 37);
-  display: flex;
-  justify-content: center;
+  width: 100vw;
+  /* border: 3px solid grey; */
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  /* display: flex;
+  justify-content: center; */
 }
 
-.container {
+/* .container {
   border: 3px solid grey;
   width: 1500px;
   height: 1000px;
-}
+} */
