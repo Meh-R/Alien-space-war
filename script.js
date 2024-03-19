@@ -5,7 +5,7 @@
 ///////////////////////////////////
 
 class Forme {
-  constructor(width, height, positionX, positionY, couleur, radius, id) {
+  constructor(width, height, positionX, positionY, couleur, radius, id, clas) {
     this.width = width;
     this.height = height;
     this.positionX = positionX;
@@ -13,6 +13,7 @@ class Forme {
     this.couleur = couleur;
     this.radius = radius;
     this.id = id;
+    this.clas = clas;
   }
   //////methode d'affichage
   display() {
@@ -26,6 +27,7 @@ class Forme {
     item.style.left = `${this.positionX - this.width / 2}px`;
     item.style.borderRadius = this.radius;
     item.id = this.id;
+
     container.appendChild(item);
   }
 }
@@ -97,20 +99,73 @@ class Invader extends Forme {
 
   ////////methode déplacement
   deplacement() {
-    setInterval(this.callBackMove, randomNumberMinMax(10, 20));
+    setInterval(this.callBackMove, randomNumberMinMax(10, 30));
   }
 }
+
+/////////////////////////////
+////////////////////////////////////
+////////////////////////////////Classe Rocket
+/////////////////////////////////////
+///////////////////////////////////
+
+class Rocket extends Invader {
+  constructor(
+    width,
+    height,
+    positionX,
+    positionY,
+    couleur,
+    radius,
+    id,
+    deplacementX,
+    deplacementY,
+    direction
+  ) {
+    super(
+      width,
+      height,
+      positionX,
+      positionY,
+      couleur,
+      radius,
+      id,
+      deplacementX,
+      deplacementY,
+      direction
+    );
+  }
+
+  deplacementV() {
+    let interval = setInterval(() => {
+      let id1 = document.getElementById(this.id);
+      if (this.positionY > 0) {
+        this.positionY -= this.deplacementY;
+        this.display;
+      }
+
+      if (this.positionY <= 0) {
+        clearInterval(interval);
+      }
+    }, 10);
+  }
+}
+
+/////////////
+/////////////
+//////////////taille du conteneur
+///////////////
+//////////////////
+
+let container = document.querySelector(".container");
+let positionContainer = container.getBoundingClientRect();
+let containerWidth = positionContainer.right;
 
 /////////////////////////////
 /////////////////////////////////
 ///////////////////////////////////spaceShips
 ///////////////////////////////////
 ///////////////////////////////////
-
-//////taille du conteneur
-let container = document.querySelector(".container");
-let positionContainer = container.getBoundingClientRect();
-let containerWidth = positionContainer.right;
 
 /////position de depart ships
 let shipsStartPositionX =
@@ -201,6 +256,28 @@ function creatInvader() {
 
 setInterval(creatInvader, 1000);
 
-// invader.display();
+//////////
+/////////
+//////////Rocket
+/////////
+//////////
 
-// invader.deplacement();
+document.addEventListener("keydown", (e) => {
+  if (e.key === "x" || e.key === "X") {
+    let rocket = new Rocket(
+      30,
+      50,
+      spaceShips.positionX,
+      spaceShips.positionY,
+      "grey",
+      "none",
+      1,
+      0,
+      5,
+      "none"
+    );
+    console.log("toto");
+
+    rocket.deplacementV();
+  }
+});
