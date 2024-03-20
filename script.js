@@ -140,16 +140,14 @@ class Rocket extends Invader {
       if (this.positionY > 0) {
         let id1 = document.getElementById(this.id);
         this.positionY -= this.deplacementY;
-        console.log(this.positionY);
-        console.log(id1);
         id1.remove();
         this.display();
       }
 
       if (this.positionY <= 0) {
         let id1 = document.getElementById(this.id);
-        id1.remove();
-        clearInterval(interval);
+        this.positionX = spaceShips.positionX;
+        this.positionY = spaceShips.positionY;
       }
     }, 10);
   }
@@ -266,22 +264,18 @@ setInterval(creatInvader, 1000);
 /////////
 //////////
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "x" || e.key === "X") {
-    let rocket = new Rocket(
-      30,
-      50,
-      spaceShips.positionX,
-      spaceShips.positionY,
-      "grey",
-      "none",
-      1,
-      0,
-      5,
-      "none"
-    );
-    console.log("toto");
-    rocket.display();
-    rocket.deplacementV();
-  }
-});
+let rocket = new Rocket(
+  30,
+  50,
+  spaceShips.positionX,
+  spaceShips.positionY,
+  "grey",
+  "none",
+  1,
+  0,
+  5,
+  "none"
+);
+
+rocket.display();
+rocket.deplacementV();
