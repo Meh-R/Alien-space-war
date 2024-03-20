@@ -5,7 +5,7 @@
 ///////////////////////////////////
 
 class Forme {
-  constructor(width, height, positionX, positionY, couleur, radius, id, clas) {
+  constructor(width, height, positionX, positionY, couleur, radius, id) {
     this.width = width;
     this.height = height;
     this.positionX = positionX;
@@ -13,7 +13,6 @@ class Forme {
     this.couleur = couleur;
     this.radius = radius;
     this.id = id;
-    this.clas = clas;
   }
   //////methode d'affichage
   display() {
@@ -99,7 +98,7 @@ class Invader extends Forme {
 
   ////////methode déplacement
   deplacement() {
-    setInterval(this.callBackMove, randomNumberMinMax(10, 30));
+    setInterval(this.callBackMove, 10);
   }
 }
 
@@ -138,13 +137,18 @@ class Rocket extends Invader {
 
   deplacementV() {
     let interval = setInterval(() => {
-      let id1 = document.getElementById(this.id);
       if (this.positionY > 0) {
+        let id1 = document.getElementById(this.id);
         this.positionY -= this.deplacementY;
-        this.display;
+        console.log(this.positionY);
+        console.log(id1);
+        id1.remove();
+        this.display();
       }
 
       if (this.positionY <= 0) {
+        let id1 = document.getElementById(this.id);
+        id1.remove();
         clearInterval(interval);
       }
     }, 10);
@@ -277,7 +281,7 @@ document.addEventListener("keydown", (e) => {
       "none"
     );
     console.log("toto");
-
+    rocket.display();
     rocket.deplacementV();
   }
 });
