@@ -94,11 +94,26 @@ class Invader extends Forme {
     ) {
       alert("you loose");
     }
+
+    if (
+      centerX > rocket.positionX &&
+      centerX < rocket.positionX + rocket.width &&
+      centerY > rocket.positionY &&
+      centerY < rocket.positionY + rocket.height
+    ) {
+      rocket.positionX = spaceShips.positionX;
+      rocket.positionY = spaceShips.positionY;
+      console.log(id);
+      let test = document.getElementById(this.id);
+      test.remove();
+      console.log("killed");
+    }
   };
 
   ////////methode déplacement
+
   deplacement() {
-    setInterval(this.callBackMove, 10);
+    setInterval(this.callBackMove, 50);
   }
 }
 
@@ -145,11 +160,10 @@ class Rocket extends Invader {
       }
 
       if (this.positionY <= 0) {
-        let id1 = document.getElementById(this.id);
         this.positionX = spaceShips.positionX;
         this.positionY = spaceShips.positionY;
       }
-    }, 10);
+    }, 50);
   }
 }
 
@@ -229,12 +243,12 @@ function randomNumberMinMax(Min, Max) {
 
 ///////function pour directionX l'invader
 function plusOuMoin() {
-  var randomNum = randomNumber(10);
+  var randomNum = randomNumber(20);
 
-  if (randomNum < 5) {
-    return -5;
+  if (randomNum < 10) {
+    return -10;
   } else {
-    return 5;
+    return 10;
   }
 }
 
@@ -249,7 +263,7 @@ function creatInvader() {
     "40px",
     randomNumber(10000),
     plusOuMoin(),
-    5,
+    10,
     "none"
   );
   invader.display();
@@ -273,7 +287,7 @@ let rocket = new Rocket(
   "none",
   1,
   0,
-  5,
+  20,
   "none"
 );
 
