@@ -92,6 +92,8 @@ class Invader extends Forme {
       centerY > spaceShips.positionY &&
       centerY < spaceShips.positionY + spaceShips.height
     ) {
+      let test = document.getElementById(this.id);
+      test.remove();
       alert("you loose");
     }
 
@@ -103,7 +105,6 @@ class Invader extends Forme {
     ) {
       rocket.positionX = spaceShips.positionX;
       rocket.positionY = spaceShips.positionY;
-      console.log(id);
       let test = document.getElementById(this.id);
       test.remove();
       console.log("killed");
