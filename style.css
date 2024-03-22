@@ -4,6 +4,20 @@
   box-sizing: border-box;
 }
 
+.score {
+  display: flex;
+  flex-direction: column;
+  color: red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 1em;
+}
+
+.scoreCourant {
+  color: red;
+}
+
 body {
   background-color: rgb(37, 37, 37);
   width: 100vw;
@@ -13,4 +27,30 @@ body {
   padding: 0;
 
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modaleLoose {
+  width: 80%;
+  height: 30vh;
+  border: 2px solid black;
+  visibility: hidden;
+  background-color: rgb(77, 76, 76);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modaleStart {
+  width: 80%;
+  height: 30vh;
+  border: 2px solid black;
+  visibility: visible;
+  background-color: rgb(77, 76, 76);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -6,6 +6,19 @@
     <link rel="stylesheet" href="style.css" />
     <title>Space Cookies</title>
   </head>
-  <body class="container"></body>
+  <body class="container">
+    <div class="score">
+      <p>Top score:</p>
+      <p>Last score:</p>
+      <p class="scoreCourant"></p>
+    </div>
+    <div class="modaleStart">
+      <button onclick="play()">start</button>
+    </div>
+    <div class="modaleLoose">
+      <h1>You are dead</h1>
+      <button onclick="reload()">restart</button>
+    </div>
+  </body>
   <script src="script.js"></script>
 </html>
