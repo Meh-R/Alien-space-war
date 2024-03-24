@@ -10,10 +10,13 @@ lastScore.innerText = `Last score ${window.localStorage.getItem(
   score
 )}`;
 
-function play() {
+function plays() {
   let modaleStart = document.querySelector(".modaleStart");
   modaleStart.style.visibility = "hidden";
   let gameOver = false;
+
+  let soundGame = document.querySelector(".soundGame");
+  soundGame.play();
 
   /////////////////////////////
   /////////////////////////////////
@@ -118,12 +121,19 @@ function play() {
           centerY < spaceShips.positionY + spaceShips.height
         ) {
           spaceShips.couleur = "./media/bang.png";
-
+          spaceShips.display();
+          let soundDestruction = document.querySelector(".soundDestruction");
+          soundDestruction.play();
           gameOver = true;
-          let modaleVar = document.querySelector(".modaleLoose");
-          modaleVar.style.opacity = "1";
           let tata = document.getElementById(this.id);
           tata.remove();
+          let modaleVar = document.querySelector(".modaleLoose");
+          modaleVar.style.opacity = "1";
+          let soundStart = document.querySelector(".soundStart");
+          soundStart.play();
+          let scoreFinale = document.querySelector(".scoreFinal");
+          scoreFinale.innerText = `Score : ${score}`;
+
           clearInterval(invaderIntervale);
           clearInterval(deplacementInterval);
         }
@@ -134,11 +144,13 @@ function play() {
           centerY > rocket.positionY &&
           centerY < rocket.positionY + rocket.height
         ) {
+          let soundExplosion = document.querySelector(".soundExplosion");
+          soundExplosion.play();
           rocket.positionX = spaceShips.positionX;
           rocket.positionY = spaceShips.positionY;
-
           this.couleur = "./media/bang.png";
-
+          let soundFire = document.querySelector(".soundFire");
+          soundFire.play();
           setTimeout(() => {
             let test = document.getElementById(this.id);
             test.remove(this.test);
@@ -210,6 +222,8 @@ function play() {
         } else if (this.positionY <= 0) {
           this.positionX = spaceShips.positionX;
           this.positionY = spaceShips.positionY;
+          let soundFire = document.querySelector(".soundFire");
+          soundFire.play();
         }
       }, 50);
     }
@@ -347,4 +361,6 @@ function play() {
 
   rocket.display();
   rocket.deplacementV();
+  let soundFire = document.querySelector(".soundFire");
+  soundFire.play();
 }
