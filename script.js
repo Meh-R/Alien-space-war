@@ -1,8 +1,14 @@
+////////////////fonction pour recharger le jeux
+
 function reload() {
   window.location.reload();
 }
 
+/////////////// variable de score
+
 let score = 0;
+
+////////////// recuperation du dernier score
 
 let lastScore = document.querySelector(".lastScore");
 lastScore.innerText = `Last score ${window.localStorage.getItem(
@@ -10,10 +16,23 @@ lastScore.innerText = `Last score ${window.localStorage.getItem(
   score
 )}`;
 
+////////////////////////////////
+/////////////////////////////////
+////////////////////////////////function play qui englobe toute les class et instance
+///////////////////////////////////
+/////////////////////////////////////
+
 function plays() {
+  /////////////////////modale de depart qui disparait en executant plays
+
   let modaleStart = document.querySelector(".modaleStart");
   modaleStart.style.visibility = "hidden";
+
+  ////////variable de fin de jeux
+
   let gameOver = false;
+
+  /////// mucic du jeux
 
   let soundGame = document.querySelector(".soundGame");
   soundGame.play();
@@ -21,8 +40,6 @@ function plays() {
   /////////////////////////////
   /////////////////////////////////
   ///////////////////////////////////Class forme
-  ///////////////////////////////////
-  ///////////////////////////////////
 
   class Forme {
     constructor(width, height, positionX, positionY, couleur, radius, id) {
@@ -55,8 +72,6 @@ function plays() {
   /////////////////////////////
   /////////////////////////////////
   ///////////////////////////////////Class invader
-  ///////////////////////////////////
-  ///////////////////////////////////
 
   class Invader extends Forme {
     constructor(
@@ -77,14 +92,30 @@ function plays() {
       this.direction = direction;
     }
 
+    /////////// Methode déplacement invader gestion de collision
+
     deplacement() {
+      ////////////// setintervale pour crée les frame
+
       let deplacementInterval = setInterval(() => {
-        //////deplacement invader
+        //////////////supression de la frame
+        let id = document.getElementById(this.id);
+        if (id) id.remove();
+
+        /////////////affichage de la frame
 
         this.display();
 
+        ///////////////////////////////////deplacement de chaque frame
+
         this.positionX += this.deplacementX;
         this.positionY += this.deplacementY;
+
+        let centerX = this.positionX + this.width / 2;
+        let centerY = this.positionY + this.height / 2;
+
+        //////////////////comportement dans son espace
+
         if (this.positionY - this.height > positionContainer.bottom) {
           let contact = document.getElementById(this.id);
           contact.remove();
@@ -99,20 +130,14 @@ function plays() {
           positionContainer.left
         ) {
           this.deplacementX = -this.deplacementX;
+        } else if (centerY - this.height * 2 > 1000) {
+          let toto = document.getElementById(this.id);
+          toto.remove();
         } else {
           this.deplacementX;
         }
 
-        ///////colision invader ships
-
-        let centerX = this.positionX + this.width / 2;
-        let centerY = this.positionY + this.height / 2;
-
-        if (centerY - this.height * 2 > 1000) {
-          let toto = document.getElementById(this.id);
-
-          toto.remove(this.toto);
-        }
+        ///////colision invader avec ships
 
         if (
           centerX > spaceShips.positionX &&
@@ -140,6 +165,7 @@ function plays() {
           clearInterval(deplacementInterval);
         }
 
+        //////////////colision invader avec rocket
         if (
           centerX > rocket.positionX &&
           centerX < rocket.positionX + rocket.width &&
@@ -153,24 +179,18 @@ function plays() {
           this.couleur = "./media/bang.png";
           let soundFire = document.querySelector(".soundFire");
           soundFire.play();
+          score += 10;
+          let scoreText = document.querySelector(".scoreCourant");
+          scoreText.innerText = `Score : ${score}`;
+          window.localStorage.setItem("scoreCourant", score);
           setTimeout(() => {
+            clearInterval(deplacementInterval);
             let test = document.getElementById(this.id);
-            test.remove(this.test);
-            console.log("killed");
-            score += 10;
-            let scoreText = document.querySelector(".scoreCourant");
-            scoreText.innerText = `Score : ${score}`;
-            window.localStorage.setItem("scoreCourant", score);
-          }, 1000);
+            test.remove();
+          }, 400);
         }
 
-        // if (centerY - this.height > positionContainer.bottom) {
-        //   this.deplacementX = 0;
-        //   this.deplacementY = 0;
-        // }
-
-        let id = document.getElementById(this.id);
-        if (id) id.remove();
+        //////////////////vitesse entre chaque frame
       }, randomNumberMinMax(25, 50));
     }
   }
@@ -178,8 +198,6 @@ function plays() {
   /////////////////////////////
   ////////////////////////////////////
   ////////////////////////////////Classe Rocket
-  /////////////////////////////////////
-  ///////////////////////////////////
 
   class Rocket extends Invader {
     constructor(
@@ -210,6 +228,8 @@ function plays() {
       );
     }
 
+    //////////////////deplacement de la rocket
+
     deplacementV() {
       let interval = setInterval(() => {
         if (gameOver == true) {
@@ -234,8 +254,6 @@ function plays() {
   /////////////
   /////////////
   //////////////taille du conteneur
-  ///////////////
-  //////////////////
 
   let container = document.querySelector(".container");
   let positionContainer = container.getBoundingClientRect();
@@ -244,8 +262,6 @@ function plays() {
   /////////////////////////////
   /////////////////////////////////
   ///////////////////////////////////spaceShips
-  ///////////////////////////////////
-  ///////////////////////////////////
 
   /////position de depart ships
   let shipsStartPositionX =
@@ -285,6 +301,8 @@ function plays() {
       }
     }
 
+    /////////////////////effacement image et nouvelle affichage
+
     let id2 = document.getElementById("2");
     id2.remove();
 
@@ -294,8 +312,6 @@ function plays() {
   /////////////////////////////
   /////////////////////////////////
   ///////////////////////////////////randomNumber
-  ///////////////////////////////////
-  ///////////////////////////////////
 
   function randomNumber(number) {
     return Math.floor(Math.random() * number);
@@ -308,10 +324,9 @@ function plays() {
   ////////////////////////////////
   /////////////////////////////////
   //////////////////////////////// invader
-  ////////////////////////////////
-  //////////////////////////////////
 
   ///////function pour directionX l'invader
+
   function plusOuMoin() {
     var randomNum = randomNumber(20);
 
@@ -322,7 +337,7 @@ function plays() {
     }
   }
 
-  //////creation de l'invader
+  //////////////// fonction instance invader
   function creatInvader() {
     let invader = new Invader(
       90,
@@ -340,14 +355,10 @@ function plays() {
     invader.deplacement();
   }
 
+  //////////////////// creation répeté d'invader
   let invaderIntervale = setInterval(creatInvader, 1000);
 
-  //////////
-  /////////
-  //////////Rocket
-  /////////
-  //////////
-
+  ///////////////////instance rocket
   let rocket = new Rocket(
     90,
     150,
