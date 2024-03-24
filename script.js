@@ -129,6 +129,8 @@ function plays() {
           tata.remove();
           let modaleVar = document.querySelector(".modaleLoose");
           modaleVar.style.opacity = "1";
+          let soundGame = document.querySelector(".soundGame");
+          soundGame.pause();
           let soundStart = document.querySelector(".soundStart");
           soundStart.play();
           let scoreFinale = document.querySelector(".scoreFinal");
