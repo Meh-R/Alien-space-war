@@ -1,7 +1,14 @@
 function reload() {
   window.location.reload();
 }
+
 let score = 0;
+
+let lastScore = document.querySelector(".lastScore");
+lastScore.innerText = `Last score ${window.localStorage.getItem(
+  "scoreCourant",
+  score
+)}`;
 
 function play() {
   let modaleStart = document.querySelector(".modaleStart");
@@ -30,7 +37,8 @@ function play() {
       let item = document.createElement("div");
       item.style.width = `${this.width}px`;
       item.style.height = `${this.height}px`;
-      item.style.backgroundColor = this.couleur;
+      item.style.backgroundImage = `url(${this.couleur})`;
+      item.style.backgroundSize = "cover";
       item.style.position = "absolute";
       item.style.top = `${this.positionY - this.height}px`;
       item.style.left = `${this.positionX - this.width / 2}px`;
@@ -97,17 +105,25 @@ function play() {
         let centerX = this.positionX + this.width / 2;
         let centerY = this.positionY + this.height / 2;
 
+        if (centerY - this.height * 2 > 1000) {
+          let toto = document.getElementById(this.id);
+
+          toto.remove(this.toto);
+        }
+
         if (
           centerX > spaceShips.positionX &&
           centerX < spaceShips.positionX + spaceShips.width &&
           centerY > spaceShips.positionY &&
           centerY < spaceShips.positionY + spaceShips.height
         ) {
-          let test = document.getElementById(this.id);
+          spaceShips.couleur = "./media/bang.png";
+
           gameOver = true;
           let modaleVar = document.querySelector(".modaleLoose");
-          modaleVar.style.visibility = "visible";
-          test.remove();
+          modaleVar.style.opacity = "1";
+          let tata = document.getElementById(this.id);
+          tata.remove();
           clearInterval(invaderIntervale);
           clearInterval(deplacementInterval);
         }
@@ -120,18 +136,28 @@ function play() {
         ) {
           rocket.positionX = spaceShips.positionX;
           rocket.positionY = spaceShips.positionY;
-          let test = document.getElementById(this.id);
-          test.remove();
-          console.log("killed");
 
-          score += 10;
-          let scoreText = document.querySelector(".scoreCourant");
-          scoreText.innerText = `Score : ${score}`;
+          this.couleur = "./media/bang.png";
+
+          setTimeout(() => {
+            let test = document.getElementById(this.id);
+            test.remove(this.test);
+            console.log("killed");
+            score += 10;
+            let scoreText = document.querySelector(".scoreCourant");
+            scoreText.innerText = `Score : ${score}`;
+            window.localStorage.setItem("scoreCourant", score);
+          }, 1000);
         }
+
+        // if (centerY - this.height > positionContainer.bottom) {
+        //   this.deplacementX = 0;
+        //   this.deplacementY = 0;
+        // }
 
         let id = document.getElementById(this.id);
         if (id) id.remove();
-      }, 50);
+      }, randomNumberMinMax(25, 50));
     }
   }
 
@@ -212,11 +238,11 @@ function play() {
 
   /////creation de ships
   let spaceShips = new Forme(
-    80,
-    50,
+    150,
+    150,
     shipsStartPositionX,
     shipsStartPositionY,
-    "blue",
+    "./media/red.png",
     "none",
     2
   );
@@ -230,7 +256,7 @@ function play() {
         spaceShips.positionX <
         positionContainer.right - spaceShips.width / 2
       ) {
-        spaceShips.positionX += 10;
+        spaceShips.positionX += 15;
       }
     }
 
@@ -239,7 +265,7 @@ function play() {
         spaceShips.positionX >
         positionContainer.left + spaceShips.width / 2
       ) {
-        spaceShips.positionX -= 10;
+        spaceShips.positionX -= 15;
       }
     }
 
@@ -283,14 +309,13 @@ function play() {
   //////creation de l'invader
   function creatInvader() {
     let invader = new Invader(
-      50,
-      50,
+      90,
+      90,
       randomNumber(positionContainer.right),
       -50,
-      "red",
+      "./media/spaceCraft.png",
       "40px",
       randomNumber(10000),
-
       plusOuMoin(),
       10,
       "none"
@@ -308,15 +333,15 @@ function play() {
   //////////
 
   let rocket = new Rocket(
-    30,
-    50,
+    90,
+    150,
     spaceShips.positionX,
     spaceShips.positionY,
-    "grey",
+    "./media/bullet.png",
     "none",
     1,
     0,
-    20,
+    25,
     "none"
   );
 

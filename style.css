@@ -19,7 +19,8 @@
 }
 
 body {
-  background-color: rgb(37, 37, 37);
+  background-image: url(./media/stars.jpeg);
+  background-size: cover;
   width: 100vw;
 
   height: 100vh;
@@ -34,23 +35,51 @@ body {
 }
 
 .modaleLoose {
-  width: 80%;
+  width: 50%;
   height: 30vh;
-  border: 2px solid black;
-  visibility: hidden;
-  background-color: rgb(77, 76, 76);
+  color: rgb(134, 1, 1);
+  /* visibility: hidden; */
+  font-size: 3em;
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  transition: opacity 2s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
 }
 
 .modaleStart {
-  width: 80%;
+  width: 50%;
   height: 30vh;
-  border: 2px solid black;
+
   visibility: visible;
-  background-color: rgb(77, 76, 76);
+
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.play {
+  border: none;
+  background: none;
+  color: grey;
+
+  font-size: 10em;
+}
+
+.reload {
+  border: none;
+  background: none;
+  color: grey;
+
+  font-size: 10rem;
 }
