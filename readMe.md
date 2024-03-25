@@ -2,13 +2,13 @@ Alien space war
 
 Fonctinnement du jeux:
 
--clicker sur start pour débuter la partie
+-clicker sur start pour débuter la partie.
 
--Detruire les ennemis
+-Detruire les ennemis.
 
--Eviter que ces derniés n'entre en contact avec votre vaisseau
+-Eviter que ces derniés n'entrent en contact avec votre vaisseau.
 
--clicker sur reload pour recommencer
+-clicker sur reload pour recommencer.
 
 Techno utilisé:
 
