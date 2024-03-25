@@ -1,6 +1,25 @@
 Alien space war
 
-But du jeux:
+Fonctinnement du jeux:
+
+-clicker sur start pour débuter la partie
 
 -Detruire les ennemis
--Eviter que ces derniés n'entre en contact avec ce votre vaisseau
+
+-Eviter que ces derniés n'entre en contact avec votre vaisseau
+
+-clicker sur reload pour recommencer
+
+Techno utilisé:
+
+-Html
+
+-Css
+
+-JavaScript
+
+Charte graphique:
+
+-Police d'origine (sans serif)
+
+-Image et sons https://opengameart.org/
