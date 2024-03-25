@@ -149,6 +149,7 @@ function plays() {
           spaceShips.display();
           let soundDestruction = document.querySelector(".soundDestruction");
           soundDestruction.play();
+
           gameOver = true;
           let tata = document.getElementById(this.id);
           tata.remove();
@@ -160,7 +161,6 @@ function plays() {
           soundStart.play();
           let scoreFinale = document.querySelector(".scoreFinal");
           scoreFinale.innerText = `Score : ${score}`;
-
           clearInterval(invaderIntervale);
           clearInterval(deplacementInterval);
         }
@@ -233,6 +233,7 @@ function plays() {
     deplacementV() {
       let interval = setInterval(() => {
         if (gameOver == true) {
+          rocket.positionY = -500;
           let rocketId = document.getElementById(this.id);
           clearInterval(interval);
           rocketId.remove();
