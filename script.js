@@ -137,7 +137,7 @@ function plays() {
           this.deplacementX;
         }
 
-        ///////colision invader avec ships
+        /////////colision invader avec ships
 
         if (
           centerX > spaceShips.positionX &&
