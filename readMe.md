@@ -20,6 +20,6 @@
 
 ## Charte graphique:
 
--Police d'origine (sans serif)
+-Police d'origine (sans serif).
 
 -Image et sons https://opengameart.org/
