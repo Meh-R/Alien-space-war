@@ -16,6 +16,18 @@ lastScore.innerText = `Last score ${window.localStorage.getItem(
   score
 )}`;
 
+function gameRules(){
+  let rules = document.querySelector(".modaleRule");
+  if(  rules.style.visibility == "hidden"){
+    rules.style.visibility = "visible"
+  }
+  else {
+    rules.style.visibility = "hidden"
+  }
+
+}
+
+
 ////////////////////////////////
 /////////////////////////////////
 ////////////////////////////////function play qui englobe toute les class et instance

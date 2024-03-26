@@ -67,6 +67,22 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.modaleRule{
+  width: 50%;
+  height: 30vh;
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button{
+  width: 50px;
+  background-color: rgb(77, 77, 77);
+  border: none;
+  border-radius: 15px;
+  padding: 5px;
+}
 
 .play {
   border: none;
