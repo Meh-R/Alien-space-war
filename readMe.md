@@ -1,6 +1,6 @@
-Alien space war
+# Alien space war
 
-Fonctinnement du jeux:
+## Fonctinnement du jeux:
 
 -clicker sur start pour débuter la partie.
 
@@ -10,7 +10,7 @@ Fonctinnement du jeux:
 
 -clicker sur reload pour recommencer.
 
-Techno utilisé:
+## Techno utilisé:
 
 -Html
 
@@ -18,7 +18,7 @@ Techno utilisé:
 
 -JavaScript
 
-Charte graphique:
+## Charte graphique:
 
 -Police d'origine (sans serif)
 
