@@ -4,6 +4,8 @@
 
 -clicker sur start pour débuter la partie.
 
+-déplacement avec les fleches gauche et droite. 
+
 -Detruire les ennemis.
 
 -Eviter que ces derniés n'entrent en contact avec votre vaisseau.
